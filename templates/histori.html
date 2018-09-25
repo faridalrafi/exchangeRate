@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id="main" class="container">
+    <h2>Rate History</h2>
+    <p>average : {{average}}</p>
+    <p>variance : {{variance}}</p>
+    <table class="table table-hover">
+      <tr>
+        <th>Date</th>
+        <th>RATE</th>
+        
+      </tr>
+      {% for x in data %}
+
+      <tr>
+        <td>{{x.cur_Date}}</td>
+        <td>{{x.cur_Rate}}</td>
+        
+      </tr>
+      
+      {% endfor %}
+        </table>
+    <p>
+      <form action="/histori" method="POST" class="form-horizontal">
+        <h3>Select curency : </h3>
+        <div class="control-group">
+            <div class="controls">
+              <input type="text" id="dari" name="dari" class="input"
+                placeholder="From" value=""
+                required>
+            </div>
+            <div class="controls">
+                <input type="text" id="ke" name="ke" class="input"
+                  placeholder="To" value=""
+                  required>
+              </div>
+        </div>
+    
+        <div class="control-group">
+            <div class="controls">
+              <button type="submit" class="btn btn-success">Submit</button>
+  
+</div>
+{% endblock %}

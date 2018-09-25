@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id="main" class="container">
+    <h2>Curency Rate</h2> {{date}}
+    <table class="table table-hover">
+      <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Rate</th>
+        <th>7-day avg</th>
+      </tr>
+      {% for x in data %}
+
+      <tr>
+          <td>{{x.cur_From}}</td>
+          <td>{{x.cur_To}}</td>
+          
+        <td>{{x.cur_Rate}}</td>
+        <td> {% if x.cur_avg_Rate <= 0 %}"insufficient data"
+          {% else %}
+          {{x.cur_avg_Rate}}
+          {% endif %}</td>
+        
+      </tr>
+      
+      {% endfor %}
+      
+    </table>
+    <p>
+      <form action="" method="POST" class="form-horizontal">
+        <h3>Date : </h3>
+        <div class="control-group">
+            <div class="controls">
+              <input type="text" id="tanggal" name="tanggal" class="input"
+                placeholder="Date" value=""
+                required>
+            </div>
+        </div>
+    
+        <div class="control-group">
+            <div class="controls">
+              <button type="submit" class="btn btn-success">Submit</button>
+  
+</div>
+{% endblock %}

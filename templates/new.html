@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form action="/new" method=post class="form-horizontal">
+    <h2>Insert Rate</h2>
+    <div class="control-group">
+      date
+        <div class="controls">
+          <input type="text" id="tanggal" name="tanggal" class="input"
+            placeholder="Date" value=""
+            required>
+        </div>
+    </div>
+
+    <div class="control-group">From
+        <div class="controls">
+          <input name="dari"  class="" placeholder="From" required>
+        </div>
+    </div>
+    <div class="control-group">To
+        <div class="controls">
+          <input name="ke"  class="" placeholder="To" required>
+        </div>
+    </div>
+
+    <div class="control-group">Rate
+        <div class="controls">
+          <input name="rate"  class="" placeholder="Rate" required>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn btn-success">Insert</button>
+          <a href="/">Back to HOME</a>
+        </div>
+    </div>
+  </form>
+{% endblock %}
