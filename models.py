@@ -1,6 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-
+from datetime import date
 
 db = SQLAlchemy()
 
@@ -11,7 +10,7 @@ class MasukanRate(db.Model):
     cur_To = db.Column(db.String, nullable = False)
     cur_Rate = db.Column(db.Float, nullable = False)
 
-    cur_Date = db.Column(db.DateTime, nullable = False, default = datetime.strftime(datetime.today(), "%b %d %Y"))
+    cur_Date = db.Column(db.DateTime, nullable = False, default = date.today())
 
     def __init__(self,cur_From,cur_To,cur_Date,cur_Rate):
         self.cur_From = cur_From
@@ -31,7 +30,7 @@ class ExchangeRate(db.Model):
     cur_To = db.Column(db.String, nullable = False)
     cur_Rate = db.Column(db.Float, nullable = False)
     cur_avg_Rate = db.Column(db.Float, nullable = False)
-    cur_Date = db.Column(db.DateTime, nullable = False, default = datetime.strftime(datetime.today(), "%b %d %Y"))
+    cur_Date = db.Column(db.DateTime, nullable = False, default = date.today())
 
     def __init__(self,cur_From,cur_To,cur_Date,cur_avg_Rate,cur_Rate):
         self.cur_From = cur_From
