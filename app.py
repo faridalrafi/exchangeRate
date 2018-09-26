@@ -87,12 +87,35 @@ def histori():
         list_Rate = []
         for iterate_ in data :
             list_Rate.append(iterate_.cur_Rate)
-        average = sum(list_Rate) / float(len(list_Rate))
-        variance = max(list_Rate)- min(list_Rate)
+            #average = sum(list_Rate) / float(len(list_Rate))
+        if len(list_Rate) >= 7 :
+            average = sum(list_Rate) / float(len(list_Rate))
+        else:
+            average = 0.0
+
+        try:
+            variance = max(list_Rate)- min(list_Rate)
+        except:
+            variance = 0.0
         return render_template( 'histori.html',data = data,average=average,variance=variance)
 
      else:
         return render_template( 'histori.html')
+
+@app.route("/hapus", methods = ['POST', 'GET'])
+def hapus():
+     if request.method == 'POST':
+        dari = request.form['dari']
+        ke = request.form['ke']
+        del_data = MasukanRate.query.filter(MasukanRate.cur_From == dari,MasukanRate.cur_To == ke).delete()
+        db.session.commit()
+        del_data1 = ExchangeRate.query.filter(ExchangeRate.cur_From == dari,ExchangeRate.cur_To == ke).delete()
+        db.session.commit()
+        return redirect("/hapus")
+
+     else:
+        data_Curency = ExchangeRate.query.filter().all()
+        return render_template( 'delet.html', data = data_Curency)
 
 if __name__ == '__main__':
     app.run()

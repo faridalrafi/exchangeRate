@@ -2,7 +2,10 @@
 {% block body %}
 <div id="main" class="container">
     <h2>Rate History</h2>
-    <p>average : {{average}}</p>
+    <p>average :  {% if average <= 0 %}"insufficient data"
+          {% else %}
+          {{average}}
+          {% endif %}</p>
     <p>variance : {{variance}}</p>
     <table class="table table-hover">
       <tr>
