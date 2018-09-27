@@ -5,10 +5,10 @@ from models import MasukanRate,ExchangeRate
 app = Flask(__name__)
 
 POSTGRES = {
-    'user': 'farid',
-    'pw': 'farid',
-    'db': 'tes_farid',
-    'host': 'localhost',
+    'user': 'postgres',
+    'pw': 'postgres',
+    'db': 'postgres',
+    'host': 'postgres',
     'port': '5432',
 }
 
@@ -16,6 +16,10 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 db.init_app(app)
+
+
+with app.app_context():
+    db.create_all()
 
 @app.route("/", methods = ['POST', 'GET'])
 def home():
