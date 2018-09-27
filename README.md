@@ -9,3 +9,9 @@ Featuring:
 Apps with view @route "/"
 
 app without view(API) @route "/API/<>"
+
+$ docker-compose build
+$ docker-compose up -d
+$ docker-compose run web
+
+## API Documentation 
