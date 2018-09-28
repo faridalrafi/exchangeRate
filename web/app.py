@@ -180,9 +180,11 @@ def add_Rate():
             average = 0
         
         message = {
-        'status': 200,
+        'status': 201,
         'message': 'OK'}
-        return (jsonify(message))
+        resp = jsonify(message)
+        resp.status_code = 201
+        return (resp)
     
 
 @app.route("/api/histori", methods = ['POST', 'GET'])
@@ -210,6 +212,7 @@ def api_histori():
             dic_histori = {"tanggal":x.cur_Date, "rate":x.cur_Rate}
             list_data.append(dic_histori)
         result = jsonify({"data":list_data,"average":average,"variance":variance,"From":dari,"To":ke})
+        result.status_code = 200
         return ( result)
 
 
@@ -228,16 +231,26 @@ def api_hapus():
         'message': 'OK'}
         return (jsonify(message))
      else:
-        data_Curency = ExchangeRate.query.filter().all()
-        list_data = []
-        dic_rate = {}
-        for x in data_Curency :
-            dic_rate = {"from":x.cur_From, "To":x.cur_To}
-            list_data.append(dic_rate)
-        result = {
-        'status': 200,
-        'data':list_data}
-        return (jsonify(result))
+        try:
+            data_Curency = ExchangeRate.query.filter().all()
+            list_data = []
+            dic_rate = {}
+            for x in data_Curency :
+                dic_rate = {"from":x.cur_From, "To":x.cur_To}
+                list_data.append(dic_rate)
+            result = {
+            'status': 200,
+            'data':list_data}
+            resp = jsonify(result)
+            resp.status_code = 200
+            return (resp)
+        except:
+            result = {
+            'status': 200,
+            'data':[]}
+            resp = jsonify(result)
+            resp.status_code = 200
+            return (resp)
 
 @app.route("/api/add_exchange_rate", methods = ['POST', 'GET'])
 def api_add_exchange_rate():
@@ -249,9 +262,11 @@ def api_add_exchange_rate():
         db.session.add(insert2)
         db.session.commit()
         message = {
-        'status': 200,
+        'status': 201,
         'message': 'OK'}
-        return (jsonify(message))
+        resp = jsonify(message)
+        resp.status_code = 201
+        return (resp)
 
 if __name__ == '__main__':
     app.run()

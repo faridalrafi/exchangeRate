@@ -1,0 +1,51 @@
+127.0.0.1:5000/api/add_exchange_rate
+
+{"dari":"USD","ke":"IDR"}
+
+output
+{
+    "message": "OK",
+    "status": 200
+}
+
+
+127.0.0.1:5000/api/histori
+{"dari":"USD","ke":"GBP"}
+output
+{
+    "From": "USD",
+    "To": "GBP",
+    "average": 0,
+    "data": [
+        {
+            "rate": 0.7579,
+            "tanggal": "Mon, 02 Jul 2018 00:00:00 GMT"
+        }
+    ],
+    "variance": 0
+}
+
+
+127.0.0.1:5000/api/new
+{"tanggal":"2018-07-3","dari":"USD","ke":"GBP","rate":"0.094"}
+
+output
+{
+    "message": "OK",
+    "status": 200
+}
+
+
+127.0.0.1:5000/api/data_curency
+{"date": "2018-07-3"}
+output
+{
+    "data_Curency": [
+        {
+            "To": "GBP",
+            "from": "USD"
+        }
+    ],
+    "date": "2018-07-3"
+}
+
